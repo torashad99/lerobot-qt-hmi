@@ -1,5 +1,6 @@
 # lerobot-qt-hmi
 
+
 Control a LeRobot robot from a Qt6 C++/QML HMI, with a Python side that either
 plugs into LeRobot's own tooling or runs as a standalone control service.
 
@@ -10,24 +11,7 @@ the hard control loop.
 
 ## Architecture
 
-    +-----------------------------+
-    |  Qt6 HMI (C++ / QML)        |   controls, telemetry view, status
-    +-----------------------------+
-        |  actions            ^  observations        process boundary
-        v                     |                      (ZeroMQ + JSON)
-    +-----------------------------+
-    |  Control service (Python)   |   fixed-rate loop + IPC server
-    +-----------------------------+
-        |  get_observation / send_action
-        v
-    +-----------------------------+
-    |  Robot subclass (Python)    |   your hardware, LeRobot contract
-    +-----------------------------+
-        |  serial / CAN / USB
-        v
-    +-----------------------------+
-    |  Hardware (motors, cameras) |
-    +-----------------------------+
+<img width="2752" height="1536" alt="lerobot-qt-hmi-image" src="https://github.com/user-attachments/assets/6df54215-bde9-462f-ab15-cf7d71267983" />
 
 There are two ways to drive the robot, sharing the same wire protocol and the
 same HMI:
