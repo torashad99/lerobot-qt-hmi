@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lerobot_teleoperator_qt_hmi"
+version = "1.0.0"
+description = "Qt6 HMI teleoperator for LeRobot (ZeroMQ bridge + standalone control service)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["pyzmq>=25"]
+
+# lerobot is only needed for the plugin path (lerobot-teleoperate/-record).
+# The ZeroMQ transport and the --sim control service run without it.
+[project.optional-dependencies]
+lerobot = ["lerobot"]
+
+[project.scripts]
+lerobot-qt-control = "lerobot_teleoperator_qt_hmi.control_service:main"
+
+[tool.setuptools]
+packages = ["lerobot_teleoperator_qt_hmi"]

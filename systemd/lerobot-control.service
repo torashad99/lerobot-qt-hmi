@@ -1,0 +1,16 @@
+[Unit]
+Description=LeRobot Qt HMI control service
+After=network.target
+
+[Service]
+Type=simple
+# Replace --sim with your real robot configuration once build_robot() is wired.
+# For real serial hardware, add the device dependency, e.g.:
+#   After=dev-ttyUSB0.device
+#   BindsTo=dev-ttyUSB0.device
+ExecStart=/usr/bin/lerobot-qt-control --sim --rate 50
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

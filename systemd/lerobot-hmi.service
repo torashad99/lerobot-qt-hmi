@@ -1,0 +1,17 @@
+[Unit]
+Description=LeRobot Qt6 HMI
+After=lerobot-control.service weston.service
+Wants=lerobot-control.service
+
+[Service]
+Type=simple
+Environment=QT_QPA_PLATFORM=wayland
+# If the compositor exposes a specific socket / runtime dir, set them here:
+#   Environment=XDG_RUNTIME_DIR=/run/user/0
+#   Environment=WAYLAND_DISPLAY=wayland-0
+ExecStart=/usr/bin/lerobot_qt_hmi
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
